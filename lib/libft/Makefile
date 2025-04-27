@@ -35,5 +35,3 @@ fclean: clean
 	@echo "Librería eliminada"
 
 re: fclean all
-
-

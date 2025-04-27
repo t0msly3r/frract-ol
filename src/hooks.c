@@ -18,7 +18,7 @@ void	hook(void *param)
 
 	mlx = param;
 	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
-		mlx_close_window(param);
+		mlx_close_window(mlx);
 }
 
 void	my_key_hook(mlx_key_data_t keydata, void* param)

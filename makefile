@@ -1,30 +1,33 @@
-NAME	:= Game
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
-LIBMLX	:= ./lib/mlx42
+# Nombre del ejecutable
+NAME = fractol
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS	:= $(shell find ./src -iname "*.c")
-OBJS	:= ${SRCS:.c=.o}
+SRCS		= src/main.c src/hooks.c src/fractal.c src/utils.c
 
-all: libmlx $(NAME)
+OBJS		= ${SRCS:.c=.o}
 
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+CC			= cc
+
+CFLAGS = -Wall -Wextra -Werror -fPIE
+LIBS = ./lib/mlx42/build/libmlx42.a -lglfw -lm -ldl -pthread -pie
+
+
+RM			= rm -f
+
+all: ${NAME}
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+	@${CC} ${CFLAGS} -c $< -o $@
 
-$(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+${NAME}: ${OBJS}
+	@${CC} ${OBJS} ${LIBS} -o ${NAME}
+	@echo "fract-ol compiled"
 
 clean:
-	@rm -rf $(OBJS)
-	@rm -rf $(LIBMLX)/build
+	@${RM} ${OBJS}
 
-fclean: clean
-	@rm -rf $(NAME)
+fclean:	clean
+	@${RM} ${NAME}
 
-re: clean all
+re: fclean all
 
-.PHONY: all, clean, fclean, re, libmlx
+.PHONY: all clean fclean re
