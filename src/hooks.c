@@ -6,7 +6,7 @@
 /*   By: tfiz-ben <tfiz-ben@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 11:33:22 by tfiz-ben          #+#    #+#             */
-/*   Updated: 2025/04/23 17:10:47 by tfiz-ben         ###   ########.fr       */
+/*   Updated: 2025/05/05 10:52:30 by tfiz-ben         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	hook(void *param)
 		mlx_close_window(mlx);
 }
 
-void	my_key_hook(mlx_key_data_t keydata, void* param)
+void	my_key_hook(mlx_key_data_t keydata, void *param)
 {
 	t_fractal	*fractal;
 

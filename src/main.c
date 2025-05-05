@@ -6,7 +6,7 @@
 /*   By: tfiz-ben <tfiz-ben@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 15:37:02 by tfiz-ben          #+#    #+#             */
-/*   Updated: 2025/04/23 16:22:06 by tfiz-ben         ###   ########.fr       */
+/*   Updated: 2025/05/05 10:48:23 by tfiz-ben         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	check_args(int argc, char **argv, t_fractal *fractal)
 		&& argv[1][0] != '2' && argv[1][0] != '3'))
 	{
 		write(1, "1... Mandelbrot\n2... Julia\n3... Burningship\n", 44);
+		free(fractal);
 		exit(0);
 	}
 	if (argv[1][0] == '1')
@@ -79,5 +80,6 @@ int	main(int argc, char **argv)
 	mlx_cursor_hook(fractal->mlx, &my_cursor_hook, fractal);
 	mlx_scroll_hook(fractal->mlx, &my_scroll_hook, fractal);
 	mlx_loop(fractal->mlx);
-	free(fractal);
+	cleanup(fractal);
+	return (0);
 }

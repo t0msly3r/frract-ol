@@ -30,4 +30,8 @@ fclean:	clean
 
 re: fclean all
 
+val: 
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+  ./fractol 1 2>&1 | grep -A 10 "definitely lost"
+
 .PHONY: all clean fclean re

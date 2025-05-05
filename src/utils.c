@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   yy: tfiz-yen <tfiz-yen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfiz-ben <tfiz-ben@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 16:12:18 yy tfiz-yen          #+#    #+#             */
-/*   Updated: 2025/04/09 16:21:45 yy tfiz-yen         ###   ########.fr       */
+/*   Created: 2025/04/09 16:12:18 by tfiz-yen          #+#    #+#             */
+/*   Updated: 2025/05/05 10:52:18 by tfiz-ben         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
+
+void cleanup(t_fractal *fractal)
+{
+    if (fractal)
+    {
+        if (fractal->img)
+            mlx_delete_image(fractal->mlx, fractal->img);
+        if (fractal->mlx)
+            mlx_terminate(fractal->mlx);
+        free(fractal);
+    }
+}
+
 
 t_complex	map(int	x, int y, t_fractal *fractal)
 {

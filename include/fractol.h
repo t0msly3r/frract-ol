@@ -33,12 +33,13 @@ void		hook(void *param);
 void		my_key_hook(mlx_key_data_t keydata, void* param);
 void		my_cursor_hook(double xpos, double ypos, void *param);
 void		my_scroll_hook(double xdelta, double ydelta, void *param);
+
 //utils
 t_complex	map(int	x, int y, t_fractal *fractal);
 double		ft_atof(char *str);
 int			ft_atoi(const char *str);
 int			ft_strlen(char *str);
-
+void 		cleanup(t_fractal *fractal);
 
 //fractal
 int			mandelbrot(t_complex c, int iters, t_complex param);
